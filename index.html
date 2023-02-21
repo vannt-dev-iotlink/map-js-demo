@@ -1,0 +1,55 @@
+<body>
+    <div id="map1" style="width: 600px; height: 300px;"></div>
+    <div id="map2" style="width: 600px; height: 300px;"></div>
+    <div id="map3" style="width: 600px; height: 300px;"></div>
+    <button onclick="clickmap1()">map1</button>
+    <button onclick="clickmap2()">map2</button>
+    <button onclick="clickmap3()">map3</button>
+    <script>
+        var map1
+        var map2
+        var map3
+        var marker
+        function callback1() {
+            map1 = new window.map4d.Map(document.getElementById("map1"), {
+                center: { lat: 16.072163491469226, lng: 108.22690536081757 },
+                zoom: 15,
+            })
+            map2 = new window.map4d.Map(document.getElementById("map2"), {
+                center: { lat: 16.072163491469226, lng: 108.22690536081757 },
+                zoom: 15,
+            })
+            marker = new map4d.Marker({
+                position: { lat: 16.068500, lng: 108.221500 }
+            })
+            marker.setMap(map1)
+            let url = `http://localhost:6969/dist/2.4.4.js?callback=callback2`
+            let script = document.createElement('script')
+            script.src = url;
+            script.defer = true;
+            document.body.appendChild(script)
+        }
+        function callback2(){
+            map3 = new window.map4d.Map(document.getElementById("map3"), {
+                center: { lat: 16.072163491469226, lng: 108.22690536081757 },
+                zoom: 15,
+            })
+        }
+		function clickmap1(){
+            marker.setMap(null)
+            marker.setMap(map1)
+        }
+        function clickmap2(){
+            marker.setMap(null)
+            marker.setMap(map2)
+        }
+        function clickmap3(){
+            marker.setMap(null)
+            marker.setMap(map3)
+        }
+    </script>
+    <script
+        src="http://localhost:6969/dist/2.4.4.js?callback=callback1">
+    </script>
+    
+</body>
